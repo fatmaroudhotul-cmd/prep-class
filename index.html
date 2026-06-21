@@ -382,6 +382,28 @@
       color: #004d4d;
     }
 
+    /* ---- SESSION TITLE BOX (BARU) ---- */
+    .session-title-box {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 12px 24px;
+      margin: 1.8rem 0 0.8rem 0;
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 4px 16px rgba(0,80,80,0.06);
+    }
+    .session-title-box h4 {
+      color: #004d4d;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0;
+    }
+    .session-title-box h4 i {
+      color: #008080;
+      margin-right: 8px;
+    }
+
     /* ---- MODUL ---- */
     .modul-wrapper { display: flex; flex-direction: column; gap: 2rem; }
     .pdf-container {
@@ -512,6 +534,7 @@
       .orientasi-card { flex-direction: column; gap: 1.2rem; align-items: stretch; }
       .pdf-container iframe { height: 400px; }
       .hero-text h1 { font-size: 2rem; }
+      .session-title-box { display: block; width: 100%; text-align: center; }
     }
   </style>
 </head>
@@ -524,7 +547,6 @@
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">
-    <!-- Ganti src dengan file logo Anda -->
     <img src="LOGO SMP ABBS SURAKARTA.png" alt="Logo ABBS" style="height:42px;" />
     <div class="logo-text">
       <span class="school">SMP</span>
@@ -552,7 +574,6 @@
       </div>
     </div>
     <div class="hero-image">
-      <!-- Ganti src dengan file logo Anda -->
       <img src="LOGO SMP ABBS SURAKARTA.png" alt="Logo ABBS" style="max-width:240px;" />
     </div>
   </div>
@@ -613,7 +634,6 @@
           <div style="font-size:0.8rem; color:#3a6a65;">Science, Math, English, Ibadah, ICT</div>
         </div>
       </div>
-      <!-- Ganti href dengan file PDF Anda -->
       <a href="./PREPARATION CLASS MODUL.pdf" download class="btn">
         <i class="fas fa-download"></i> Unduh Modul
       </a>
@@ -775,7 +795,7 @@
     }
   };
 
-  // ---- RENDER PANEL ----
+  // ---- RENDER PANEL (DENGAN SESSION TITLE BOX) ----
   function renderPanel(kls) {
     const data = scheduleData[kls];
     if (!data) return '<p>Data tidak tersedia.</p>';
@@ -821,8 +841,11 @@
         `;
       }
 
+      // 🟢 PERUBAHAN UTAMA: judul sesi dibungkus dengan div .session-title-box
       return `
-        <h4 style="margin:1.5rem 0 0.5rem; color:#004d4d;"><i class="fas fa-clock" style="color:#008080;"></i> ${title}</h4>
+        <div class="session-title-box">
+          <h4><i class="fas fa-clock"></i> ${title}</h4>
+        </div>
         ${meetHtml}
         <table class="schedule-table">
           <thead><tr><th style="border-radius:16px 0 0 16px;">Hari/Tanggal</th><th style="border-radius:0 16px 16px 0;">Mata Pelajaran</th></tr></thead>
