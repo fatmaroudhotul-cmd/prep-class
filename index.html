@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrikulasi SMP ABBS Surakarta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #f0f9f6;
+      color: #1a2e2b;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- ANIMATED BACKGROUND (gradient bergerak) ---- */
+    .bg-animated {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #e0f2f0 0%, #b2dfdb 50%, #80cbc4 100%);
+      background-size: 400% 400%;
+      animation: gradShift 18s ease infinite;
+    }
+    @keyframes gradShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ---- FLOATING PARTICLES (CSS) ---- */
+    .particle-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      background: rgba(0, 128, 128, 0.15);
+      border-radius: 50%;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0.3; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0.8; }
+    }
+
+    /* ---- NAVBAR ---- */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 72px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 2px solid rgba(0,128,128,0.2);
+    }
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #006666;
+    }
+    .navbar .logo img {
+      height: 42px;
+      width: auto;
+      border-radius: 8px;
+    }
+    .navbar .logo .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .navbar .logo .logo-text .school {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #008080;
+      letter-spacing: 0.5px;
+    }
+    .navbar .logo .logo-text .name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #004d4d;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1a4a47;
+      padding: 8px 16px;
+      border-radius: 40px;
+      transition: 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: linear-gradient(135deg, #008080, #20B2AA);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0,128,128,0.3);
+      transform: scale(1.02);
+    }
+    .nav-links a i { margin-right: 6px; }
+    .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #004d4d; }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 2.5rem 3.5rem;
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 20px 60px rgba(0,80,80,0.08);
+    }
+    .hero-text { flex: 1 1 500px; }
+    .hero-text .badge {
+      display: inline-block;
+      background: rgba(0,128,128,0.15);
+      color: #008080;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 20px;
+      border-radius: 40px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(0,128,128,0.15);
+    }
+    .hero-text h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #004d4d;
+    }
+    .hero-text h1 span {
+      background: linear-gradient(135deg, #008080, #40E0D0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-text p {
+      font-size: 1.15rem;
+      color: #2a5a55;
+      margin: 1.2rem 0 1.8rem;
+      max-width: 500px;
+    }
+    .hero-tagline {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #006666;
+      background: rgba(255,255,255,0.7);
+      padding: 14px 24px;
+      border-radius: 60px;
+      display: inline-block;
+      border: 1px solid rgba(0,128,128,0.2);
+      backdrop-filter: blur(4px);
+    }
+    .hero-image {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(0,128,128,0.15));
+      animation: floatLogo 6s ease-in-out infinite;
+      border-radius: 30px;
+    }
+    @keyframes floatLogo {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-18px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* ---- SECTION ---- */
+    .section {
+      padding: 4rem 2.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #004d4d;
+      margin-bottom: 0.3rem;
+    }
+    .section-title i { color: #008080; margin-right: 10px; }
+    .section-sub {
+      font-size: 1.1rem;
+      color: #3a6a65;
+      margin-bottom: 2.5rem;
+    }
+    .tagline-section {
+      display: inline-block;
+      background: linear-gradient(135deg, #008080, #20B2AA);
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 28px;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      box-shadow: 0 6px 20px rgba(0,128,128,0.25);
+    }
+
+    /* ---- ORIENTASI CARD ---- */
+    .orientasi-card {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 8px 32px rgba(0,80,80,0.06);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .orientasi-card .info h3 {
+      font-size: 1.6rem;
+      color: #004d4d;
+    }
+    .orientasi-card .info p {
+      color: #2a5a55;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .orientasi-card .zoom-link {
+      background: #008080;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 700;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(0,128,128,0.3);
+    }
+    .orientasi-card .zoom-link:hover {
+      transform: scale(1.04);
+      background: #006666;
+    }
+
+    /* ---- JADWAL TAB ---- */
+    .schedule-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+    .schedule-tabs button {
+      padding: 12px 28px;
+      border: none;
+      background: rgba(255,255,255,0.6);
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.3s;
+      color: #1a4a47;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(0,128,128,0.1);
+    }
+    .schedule-tabs button:hover {
+      background: rgba(0,128,128,0.1);
+      transform: translateY(-2px);
+    }
+    .schedule-tabs button.active-tab {
+      background: linear-gradient(135deg, #008080, #20B2AA);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0,128,128,0.3);
+      border-color: transparent;
+    }
+
+    .schedule-panel {
+      display: none;
+      animation: fadeUp 0.5s ease;
+    }
+    .schedule-panel.active-panel { display: block; }
+    @keyframes fadeUp {
+      0% { opacity:0; transform:translateY(30px); }
+      100% { opacity:1; transform:translateY(0); }
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      background: transparent;
+    }
+    .schedule-table th {
+      text-align: left;
+      padding: 14px 20px;
+      background: rgba(0,128,128,0.06);
+      border-radius: 16px 16px 0 0;
+      font-weight: 700;
+      color: #004d4d;
+      font-size: 0.95rem;
+    }
+    .schedule-table td {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(4px);
+      padding: 16px 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.6);
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .schedule-table tr:hover td {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 8px 24px rgba(0,128,128,0.06);
+    }
+    .subject-badge {
+      display: inline-block;
+      background: rgba(0,128,128,0.08);
+      padding: 4px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      margin: 2px 6px 2px 0;
+      font-size: 0.9rem;
+      color: #004d4d;
+    }
+    .subject-badge i { margin-right: 6px; color: #008080; }
+    .meet-link {
+      color: #008080;
+      font-weight: 600;
+      background: rgba(0,128,128,0.08);
+      padding: 4px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      transition: 0.2s;
+      display: inline-block;
+      border: 1px solid rgba(0,128,128,0.1);
+    }
+    .meet-link:hover {
+      background: #008080;
+      color: #fff;
+    }
+    .schedule-note {
+      margin-top: 2rem;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+      padding: 16px 24px;
+      border-radius: 20px;
+      border-left: 6px solid #40E0D0;
+      font-weight: 500;
+      color: #004d4d;
+    }
+
+    /* ---- MODUL ---- */
+    .modul-wrapper { display: flex; flex-direction: column; gap: 2rem; }
+    .pdf-container {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 12px 40px rgba(0,80,80,0.06);
+    }
+    .pdf-container iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+    }
+    .pdf-download {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 60px;
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+    .pdf-download .info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pdf-download .info i { font-size: 2rem; color: #008080; }
+    .pdf-download .btn {
+      background: linear-gradient(135deg, #008080, #20B2AA);
+      color: #fff;
+      padding: 12px 32px;
+      border-radius: 60px;
+      font-weight: 700;
+      transition: 0.3s;
+      box-shadow: 0 8px 24px rgba(0,128,128,0.25);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+    .pdf-download .btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 32px rgba(0,128,128,0.35);
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      background: #004d4d;
+      color: #b2dfdb;
+      padding: 3rem 2.5rem 1.5rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .footer-inner .brand {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+    .footer-inner .brand span { color: #40E0D0; }
+    .footer-inner p { max-width: 400px; line-height: 1.6; font-size: 0.9rem; }
+    .footer-inner .social {
+      display: flex;
+      gap: 1.2rem;
+    }
+    .footer-inner .social a {
+      background: rgba(255,255,255,0.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      color: #b2dfdb;
+    }
+    .footer-inner .social a:hover {
+      background: #40E0D0;
+      color: #004d4d;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .navbar { padding: 0 1.5rem; }
+      .hero-content { padding: 2rem; }
+      .hero-text h1 { font-size: 2.4rem; }
+      .section { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 700px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0; right: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 0.8rem;
+        display: none;
+        border-bottom: 2px solid rgba(0,128,128,0.1);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { width: 100%; padding: 12px; }
+      .orientasi-card { flex-direction: column; gap: 1.2rem; align-items: stretch; }
+      .pdf-container iframe { height: 400px; }
+      .hero-text h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+<!-- Animated BG -->
+<div class="bg-animated"></div>
+<!-- Floating Particles -->
+<div class="particle-container" id="particles"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <!-- Ganti src dengan file logo Anda -->
+    <img src="LOGO SMP ABBS SURAKARTA.png" alt="Logo ABBS" style="height:42px;" />
+    <div class="logo-text">
+      <span class="school">SMP</span>
+      <span class="name">ABBS SURAKARTA</span>
+    </div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+    <li><a href="#jadwal"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+    <li><a href="#modul"><i class="fas fa-book-open"></i> Modul</a></li>
+  </ul>
+  <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="badge"><i class="fas fa-graduation-cap"></i> Tahun Ajaran 2026/2027</div>
+      <h1>Matrikulasi <span>SMP ABBS</span> Surakarta</h1>
+      <p>Program pembekalan bagi siswa baru kelas VII untuk membangun fondasi akademik, karakter Islami, dan kompetensi global.</p>
+      <div class="hero-tagline">
+        <i class="fas fa-quote-left" style="opacity:0.6; margin-right:8px;"></i>
+        Building Strong Foundations for Academic Excellence, Islamic Character, and Global Competence.
+      </div>
+    </div>
+    <div class="hero-image">
+      <!-- Ganti src dengan file logo Anda -->
+      <img src="LOGO SMP ABBS SURAKARTA.png" alt="Logo ABBS" style="max-width:240px;" />
+    </div>
+  </div>
+</section>
+
+<!-- JADWAL -->
+<section class="section" id="jadwal">
+  <h2 class="section-title"><i class="fas fa-calendar-check"></i> Jadwal Matrikulasi</h2>
+  <p class="section-sub">Pilih kelas untuk melihat jadwal lengkap.</p>
+
+  <!-- ORIENTASI -->
+  <div class="orientasi-card">
+    <div class="info">
+      <h3><i class="fas fa-bullhorn" style="color:#008080;"></i> Orientasi Matrikulasi</h3>
+      <p><strong>Rabu, 24 Juni 2026</strong> — 08.00 WIB (Zoom)</p>
+      <p style="font-size:0.9rem; opacity:0.8;">Penjelasan program &amp; bertemu wali kelas sementara</p>
+    </div>
+    <a href="https://telkomsel.zoom.us/j/93027370540?pwd=oQ1jS8rLmrwaeXhXvPm0ipp6NBZP3p.1" target="_blank" class="zoom-link">
+      <i class="fas fa-video"></i> Zoom Meeting
+    </a>
+  </div>
+
+  <!-- Tabs Kelas -->
+  <div class="schedule-tabs" id="classTabs">
+    <button class="active-tab" data-class="7A">7A</button>
+    <button data-class="7B">7B</button>
+    <button data-class="7C">7C</button>
+    <button data-class="7D">7D</button>
+    <button data-class="7E">7E</button>
+  </div>
+
+  <div id="schedulePanels"></div>
+
+  <div class="schedule-note">
+    <i class="fas fa-info-circle" style="color:#008080;"></i>
+    <strong>Info:</strong> Sesi 1 &amp; 3 = Belajar Mandiri (baca modul, kerjakan tugas). Sesi 2 = Meeting Online via Google Meet.
+  </div>
+
+  <div class="tagline-section">
+    <i class="fas fa-flag-checkered"></i> Building Strong Foundations for Academic Excellence, Islamic Character, and Global Competence.
+  </div>
+</section>
+
+<!-- MODUL -->
+<section class="section" id="modul">
+  <h2 class="section-title"><i class="fas fa-file-pdf"></i> Modul Matrikulasi</h2>
+  <p class="section-sub">Baca langsung atau unduh modul persiapan untuk semua mata pelajaran.</p>
+  <div class="modul-wrapper">
+    <div class="pdf-container">
+      <!-- Ganti src dengan file PDF Anda -->
+      <iframe src="./PREPARATION CLASS MODUL.pdf#toolbar=1" title="Modul Matrikulasi"></iframe>
+    </div>
+    <div class="pdf-download">
+      <div class="info">
+        <i class="fas fa-file-pdf"></i>
+        <div>
+          <strong>PREPARATION CLASS MODUL.pdf</strong>
+          <div style="font-size:0.8rem; color:#3a6a65;">Science, Math, English, Ibadah, ICT</div>
+        </div>
+      </div>
+      <!-- Ganti href dengan file PDF Anda -->
+      <a href="./PREPARATION CLASS MODUL.pdf" download class="btn">
+        <i class="fas fa-download"></i> Unduh Modul
+      </a>
+    </div>
+    <div class="tagline-section" style="margin-top:1rem;">
+      <i class="fas fa-star"></i> Building Strong Foundations for Academic Excellence, Islamic Character, and Global Competence.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand">SMP <span>ABBS</span> Surakarta</div>
+      <p style="margin-top:10px;">Membangun generasi bertakwa, berakhlak mulia, unggul dalam teknologi, dan berwawasan global.</p>
+    </div>
+    <div>
+      <div style="font-weight:600; color:#fff; margin-bottom:10px;">Ikuti Kami</div>
+      <div class="social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 SMP ABBS Surakarta — Matrikulasi Siswa Baru Kelas VII</div>
+</footer>
+
+<script>
+  // ---- FLOATING PARTICLES ----
+  (function createParticles() {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = 10 + Math.random() * 30;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = 15 + Math.random() * 25 + 's';
+      p.style.animationDelay = Math.random() * 20 + 's';
+      container.appendChild(p);
+    }
+  })();
+
+  // ---- DATA JADWAL (URUT: ORIENTASI 24, SESI1 25-27, SESI2 29-3, SESI3 6-10) ----
+  const scheduleData = {
+    '7A': {
+      sesi1: [
+        { hari: 'Rabu, 25 Juni', mapels: ['Math', 'Quran'] },
+        { hari: 'Jum\'at, 26 Juni', mapels: ['ICT', 'Inggris'] },
+        { hari: 'Sabtu, 27 Juni', mapels: ['Science'] }
+      ],
+      sesi2: [
+        { hari: 'Senin, 29 Juni', mapel: 'Math' },
+        { hari: 'Selasa, 30 Juni', mapel: 'Quran' },
+        { hari: 'Rabu, 1 Juli', mapel: 'ICT' },
+        { hari: 'Kamis, 2 Juli', mapel: 'Science' },
+        { hari: 'Jumat, 3 Juli', mapel: 'Inggris' }
+      ],
+      sesi3: [
+        { hari: 'Senin, 6 Juli', mapel: 'Quran' },
+        { hari: 'Selasa, 7 Juli', mapel: 'ICT' },
+        { hari: 'Rabu, 8 Juli', mapel: 'Math' },
+        { hari: 'Kamis, 9 Juli', mapel: 'Inggris' },
+        { hari: 'Jumat, 10 Juli', mapel: 'Science' }
+      ],
+      meetLink: 'https://meet.google.com/usn-qfow-kec'
+    },
+    '7B': {
+      sesi1: [
+        { hari: 'Rabu, 25 Juni', mapels: ['Science', 'Quran'] },
+        { hari: 'Jum\'at, 26 Juni', mapels: ['Math', 'ICT'] },
+        { hari: 'Sabtu, 27 Juni', mapels: ['Inggris'] }
+      ],
+      sesi2: [
+        { hari: 'Senin, 29 Juni', mapel: 'Quran' },
+        { hari: 'Selasa, 30 Juni', mapel: 'Science' },
+        { hari: 'Rabu, 1 Juli', mapel: 'Math' },
+        { hari: 'Kamis, 2 Juli', mapel: 'Inggris' },
+        { hari: 'Jumat, 3 Juli', mapel: 'ICT' }
+      ],
+      sesi3: [
+        { hari: 'Senin, 6 Juli', mapel: 'Science' },
+        { hari: 'Selasa, 7 Juli', mapel: 'Quran' },
+        { hari: 'Rabu, 8 Juli', mapel: 'ICT' },
+        { hari: 'Kamis, 9 Juli', mapel: 'Math' },
+        { hari: 'Jumat, 10 Juli', mapel: 'Inggris' }
+      ],
+      meetLink: 'https://meet.google.com/tdi-xqav-fvg'
+    },
+    '7C': {
+      sesi1: [
+        { hari: 'Rabu, 25 Juni', mapels: ['Inggris', 'ICT'] },
+        { hari: 'Jum\'at, 26 Juni', mapels: ['Quran', 'Science'] },
+        { hari: 'Sabtu, 27 Juni', mapels: ['Math'] }
+      ],
+      sesi2: [
+        { hari: 'Senin, 29 Juni', mapel: 'Inggris' },
+        { hari: 'Selasa, 30 Juni', mapel: 'ICT' },
+        { hari: 'Rabu, 1 Juli', mapel: 'Quran' },
+        { hari: 'Kamis, 2 Juli', mapel: 'Science' },
+        { hari: 'Jumat, 3 Juli', mapel: 'Math' }
+      ],
+      sesi3: [
+        { hari: 'Senin, 6 Juli', mapel: 'Math' },
+        { hari: 'Selasa, 7 Juli', mapel: 'Inggris' },
+        { hari: 'Rabu, 8 Juli', mapel: 'Quran' },
+        { hari: 'Kamis, 9 Juli', mapel: 'ICT' },
+        { hari: 'Jumat, 10 Juli', mapel: 'Science' }
+      ],
+      meetLink: 'https://meet.google.com/occ-nqfv-gxe'
+    },
+    '7D': {
+      sesi1: [
+        { hari: 'Rabu, 25 Juni', mapels: ['Math', 'Quran'] },
+        { hari: 'Jum\'at, 26 Juni', mapels: ['ICT', 'Science'] },
+        { hari: 'Sabtu, 27 Juni', mapels: ['Inggris'] }
+      ],
+      sesi2: [
+        { hari: 'Senin, 29 Juni', mapel: 'ICT' },
+        { hari: 'Selasa, 30 Juni', mapel: 'Math' },
+        { hari: 'Rabu, 1 Juli', mapel: 'Science' },
+        { hari: 'Kamis, 2 Juli', mapel: 'Quran' },
+        { hari: 'Jumat, 3 Juli', mapel: 'Inggris' }
+      ],
+      sesi3: [
+        { hari: 'Senin, 6 Juli', mapel: 'Quran' },
+        { hari: 'Selasa, 7 Juli', mapel: 'Science' },
+        { hari: 'Rabu, 8 Juli', mapel: 'Math' },
+        { hari: 'Kamis, 9 Juli', mapel: 'ICT' },
+        { hari: 'Jumat, 10 Juli', mapel: 'Inggris' }
+      ],
+      meetLink: 'https://meet.google.com/ywx-ruva-cuw'
+    },
+    '7E': {
+      sesi1: [
+        { hari: 'Rabu, 25 Juni', mapels: ['Inggris', 'Quran'] },
+        { hari: 'Jum\'at, 26 Juni', mapels: ['Math', 'ICT'] },
+        { hari: 'Sabtu, 27 Juni', mapels: ['Science'] }
+      ],
+      sesi2: [
+        { hari: 'Senin, 29 Juni', mapel: 'Science' },
+        { hari: 'Selasa, 30 Juni', mapel: 'Inggris' },
+        { hari: 'Rabu, 1 Juli', mapel: 'ICT' },
+        { hari: 'Kamis, 2 Juli', mapel: 'Math' },
+        { hari: 'Jumat, 3 Juli', mapel: 'Quran' }
+      ],
+      sesi3: [
+        { hari: 'Senin, 6 Juli', mapel: 'Inggris' },
+        { hari: 'Selasa, 7 Juli', mapel: 'Math' },
+        { hari: 'Rabu, 8 Juli', mapel: 'Science' },
+        { hari: 'Kamis, 9 Juli', mapel: 'Quran' },
+        { hari: 'Jumat, 10 Juli', mapel: 'ICT' }
+      ],
+      meetLink: 'https://meet.google.com/qrm-rpay-ypu'
+    }
+  };
+
+  // ---- RENDER PANEL ----
+  function renderPanel(kls) {
+    const data = scheduleData[kls];
+    if (!data) return '<p>Data tidak tersedia.</p>';
+
+    const iconMap = {
+      'Math': 'fa-calculator',
+      'Science': 'fa-flask',
+      'Inggris': 'fa-language',
+      'ICT': 'fa-laptop-code',
+      'Quran': 'fa-quran'
+    };
+
+    function renderSubjects(mapels) {
+      return mapels.map(m => `<span class="subject-badge"><i class="fas ${iconMap[m] || 'fa-book'}"></i> ${m}</span>`).join(' ');
+    }
+
+    function buildTable(sesi, title, showMeet = false) {
+      let rows = sesi.map(item => {
+        let subjectsHtml;
+        if (item.mapels) {
+          subjectsHtml = renderSubjects(item.mapels);
+        } else if (item.mapel) {
+          subjectsHtml = `<span class="subject-badge"><i class="fas ${iconMap[item.mapel] || 'fa-book'}"></i> ${item.mapel}</span>`;
+        }
+        return `
+          <tr>
+            <td style="font-weight:600; background:rgba(0,128,128,0.04); border-radius:16px 0 0 16px;">${item.hari}</td>
+            <td style="border-radius:0 16px 16px 0;">${subjectsHtml}</td>
+          </tr>
+        `;
+      }).join('');
+
+      let meetHtml = '';
+      if (showMeet) {
+        meetHtml = `
+          <div style="margin:1rem 0 0.5rem; background:rgba(0,128,128,0.05); padding:0.8rem 1.5rem; border-radius:40px; display:inline-block;">
+            <i class="fas fa-video" style="color:#008080;"></i>
+            <strong>Link Meeting:</strong>
+            <a href="${data.meetLink}" target="_blank" class="meet-link" style="margin-left:12px;">
+              <i class="fas fa-external-link-alt"></i> Google Meet
+            </a>
+          </div>
+        `;
+      }
+
+      return `
+        <h4 style="margin:1.5rem 0 0.5rem; color:#004d4d;"><i class="fas fa-clock" style="color:#008080;"></i> ${title}</h4>
+        ${meetHtml}
+        <table class="schedule-table">
+          <thead><tr><th style="border-radius:16px 0 0 16px;">Hari/Tanggal</th><th style="border-radius:0 16px 16px 0;">Mata Pelajaran</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    return `
+      ${buildTable(data.sesi1, 'Sesi 1 — Belajar Mandiri (25–27 Juni)', false)}
+      ${buildTable(data.sesi2, 'Sesi 2 — Meeting Online (29 Juni – 3 Juli)', true)}
+      ${buildTable(data.sesi3, 'Sesi 3 — Belajar Mandiri (6–10 Juli)', false)}
+    `;
+  }
+
+  // ---- SWITCH TAB ----
+  const container = document.getElementById('schedulePanels');
+  const tabs = document.querySelectorAll('#classTabs button');
+
+  function switchClass(kls) {
+    tabs.forEach(btn => btn.classList.remove('active-tab'));
+    document.querySelector(`#classTabs button[data-class="${kls}"]`).classList.add('active-tab');
+    container.innerHTML = renderPanel(kls);
+  }
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', function() {
+      switchClass(this.getAttribute('data-class'));
+    });
+  });
+  switchClass('7A');
+
+  // ---- MOBILE TOGGLE ----
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // ---- SCROLL ACTIVE NAV ----
+  window.addEventListener('scroll', function() {
+    const sections = ['home', 'jadwal', 'modul'];
+    let current = 'home';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 100) current = id;
+      }
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
