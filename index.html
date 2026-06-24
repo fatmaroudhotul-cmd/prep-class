@@ -609,7 +609,7 @@
 
   <div class="schedule-note">
     <i class="fas fa-info-circle" style="color:#008080;"></i>
-    <strong>Info:</strong> Sesi 1 &amp; 3 = Belajar Mandiri (baca modul, kerjakan tugas). Sesi 2 = Meeting Online via Google Meet.
+    <strong>Info:</strong> Sesi 1 &amp; 3 = Belajar Mandiri (baca modul, kerjakan tugas). Sesi 2 = Meeting Online via Google Meet (Jam 08.00 - 09.30 WIB).
   </div>
 
   <div class="tagline-section">
@@ -684,9 +684,16 @@
   // ---- DATA JADWAL (URUT: ORIENTASI 24, SESI1 25-27, SESI2 29-3, SESI3 6-10) ----
   const scheduleData = {
     '7A': {
+      guru: {
+        Math: 'Ms Robi',
+        English: 'Mr Sharih',
+        Science: 'Ms Nourma',
+        Quran: 'Usth Ida',
+        ICT: 'Mr Ifan'
+      },
       sesi1: [
-        { hari: 'Kamis, 25 Juni', mapels: ['Math', 'Quran'] },
-        { hari: 'Jum\'at, 26 Juni', mapels: ['ICT', 'Inggris'] },
+        { hari: 'Rabu, 25 Juni', mapels: ['Math', 'Quran'] },
+        { hari: 'Jum\'at, 26 Juni', mapels: ['ICT', 'English'] },
         { hari: 'Sabtu, 27 Juni', mapels: ['Science'] }
       ],
       sesi2: [
@@ -694,28 +701,35 @@
         { hari: 'Selasa, 30 Juni', mapel: 'Quran' },
         { hari: 'Rabu, 1 Juli', mapel: 'ICT' },
         { hari: 'Kamis, 2 Juli', mapel: 'Science' },
-        { hari: 'Jumat, 3 Juli', mapel: 'Inggris' }
+        { hari: 'Jumat, 3 Juli', mapel: 'English' }
       ],
       sesi3: [
         { hari: 'Senin, 6 Juli', mapel: 'Quran' },
         { hari: 'Selasa, 7 Juli', mapel: 'ICT' },
         { hari: 'Rabu, 8 Juli', mapel: 'Math' },
-        { hari: 'Kamis, 9 Juli', mapel: 'Inggris' },
+        { hari: 'Kamis, 9 Juli', mapel: 'English' },
         { hari: 'Jumat, 10 Juli', mapel: 'Science' }
       ],
       meetLink: 'https://meet.google.com/usn-qfow-kec'
     },
     '7B': {
+      guru: {
+        Math: 'Ms Rohmah',
+        English: 'Mr Sharih',
+        Science: 'Ms Binti',
+        Quran: 'Usth Naya',
+        ICT: 'Mr Musfiq'
+      },
       sesi1: [
-        { hari: 'Kamis, 25 Juni', mapels: ['Science', 'Quran'] },
+        { hari: 'Rabu, 25 Juni', mapels: ['Science', 'Quran'] },
         { hari: 'Jum\'at, 26 Juni', mapels: ['Math', 'ICT'] },
-        { hari: 'Sabtu, 27 Juni', mapels: ['Inggris'] }
+        { hari: 'Sabtu, 27 Juni', mapels: ['English'] }
       ],
       sesi2: [
         { hari: 'Senin, 29 Juni', mapel: 'Quran' },
         { hari: 'Selasa, 30 Juni', mapel: 'Science' },
         { hari: 'Rabu, 1 Juli', mapel: 'Math' },
-        { hari: 'Kamis, 2 Juli', mapel: 'Inggris' },
+        { hari: 'Kamis, 2 Juli', mapel: 'English' },
         { hari: 'Jumat, 3 Juli', mapel: 'ICT' }
       ],
       sesi3: [
@@ -723,18 +737,25 @@
         { hari: 'Selasa, 7 Juli', mapel: 'Quran' },
         { hari: 'Rabu, 8 Juli', mapel: 'ICT' },
         { hari: 'Kamis, 9 Juli', mapel: 'Math' },
-        { hari: 'Jumat, 10 Juli', mapel: 'Inggris' }
+        { hari: 'Jumat, 10 Juli', mapel: 'English' }
       ],
       meetLink: 'https://meet.google.com/tdi-xqav-fvg'
     },
-    '7C': {
+   '7C': {
+      guru: {
+        Math: 'Ms Dila',
+        English: 'Mr Hang',
+        Science: 'Ms Binti',
+        Quran: 'Usth Rizqia',
+        ICT: 'Mr Jack'
+      },
       sesi1: [
-        { hari: 'Kamis, 25 Juni', mapels: ['Inggris', 'ICT'] },
+        { hari: 'Rabu, 25 Juni', mapels: ['English', 'ICT'] },
         { hari: 'Jum\'at, 26 Juni', mapels: ['Quran', 'Science'] },
         { hari: 'Sabtu, 27 Juni', mapels: ['Math'] }
       ],
       sesi2: [
-        { hari: 'Senin, 29 Juni', mapel: 'Inggris' },
+        { hari: 'Senin, 29 Juni', mapel: 'English' },
         { hari: 'Selasa, 30 Juni', mapel: 'ICT' },
         { hari: 'Rabu, 1 Juli', mapel: 'Quran' },
         { hari: 'Kamis, 2 Juli', mapel: 'Science' },
@@ -742,7 +763,7 @@
       ],
       sesi3: [
         { hari: 'Senin, 6 Juli', mapel: 'Math' },
-        { hari: 'Selasa, 7 Juli', mapel: 'Inggris' },
+        { hari: 'Selasa, 7 Juli', mapel: 'English' },
         { hari: 'Rabu, 8 Juli', mapel: 'Quran' },
         { hari: 'Kamis, 9 Juli', mapel: 'ICT' },
         { hari: 'Jumat, 10 Juli', mapel: 'Science' }
@@ -750,42 +771,56 @@
       meetLink: 'https://meet.google.com/occ-nqfv-gxe'
     },
     '7D': {
+      guru: {
+        Math: 'Ms Dila',
+        English: 'Mr Hang',
+        Science: 'Ms Fitri',
+        Quran: 'Ust Fahmi',
+        ICT: 'Mr Qisthi'
+      },
       sesi1: [
-        { hari: 'Kamis, 25 Juni', mapels: ['Math', 'Quran'] },
+        { hari: 'Rabu, 25 Juni', mapels: ['Math', 'Quran'] },
         { hari: 'Jum\'at, 26 Juni', mapels: ['ICT', 'Science'] },
-        { hari: 'Sabtu, 27 Juni', mapels: ['Inggris'] }
+        { hari: 'Sabtu, 27 Juni', mapels: ['English'] }
       ],
       sesi2: [
         { hari: 'Senin, 29 Juni', mapel: 'ICT' },
         { hari: 'Selasa, 30 Juni', mapel: 'Math' },
         { hari: 'Rabu, 1 Juli', mapel: 'Science' },
         { hari: 'Kamis, 2 Juli', mapel: 'Quran' },
-        { hari: 'Jumat, 3 Juli', mapel: 'Inggris' }
+        { hari: 'Jumat, 3 Juli', mapel: 'English' }
       ],
       sesi3: [
         { hari: 'Senin, 6 Juli', mapel: 'Quran' },
         { hari: 'Selasa, 7 Juli', mapel: 'Science' },
         { hari: 'Rabu, 8 Juli', mapel: 'Math' },
         { hari: 'Kamis, 9 Juli', mapel: 'ICT' },
-        { hari: 'Jumat, 10 Juli', mapel: 'Inggris' }
+        { hari: 'Jumat, 10 Juli', mapel: 'English' }
       ],
       meetLink: 'https://meet.google.com/ywx-ruva-cuw'
     },
     '7E': {
+      guru: {
+        Math: 'Ms Wafda',
+        English: 'Ms Farida',
+        Science: 'Ms Binti',
+        Quran: 'Ust Amien',
+        ICT: 'Ms Lieta'
+      },
       sesi1: [
-        { hari: 'Kamis, 25 Juni', mapels: ['Inggris', 'Quran'] },
+        { hari: 'Rabu, 25 Juni', mapels: ['English', 'Quran'] },
         { hari: 'Jum\'at, 26 Juni', mapels: ['Math', 'ICT'] },
         { hari: 'Sabtu, 27 Juni', mapels: ['Science'] }
       ],
       sesi2: [
         { hari: 'Senin, 29 Juni', mapel: 'Science' },
-        { hari: 'Selasa, 30 Juni', mapel: 'Inggris' },
+        { hari: 'Selasa, 30 Juni', mapel: 'English' },
         { hari: 'Rabu, 1 Juli', mapel: 'ICT' },
         { hari: 'Kamis, 2 Juli', mapel: 'Math' },
         { hari: 'Jumat, 3 Juli', mapel: 'Quran' }
       ],
       sesi3: [
-        { hari: 'Senin, 6 Juli', mapel: 'Inggris' },
+        { hari: 'Senin, 6 Juli', mapel: 'English' },
         { hari: 'Selasa, 7 Juli', mapel: 'Math' },
         { hari: 'Rabu, 8 Juli', mapel: 'Science' },
         { hari: 'Kamis, 9 Juli', mapel: 'Quran' },
@@ -840,8 +875,6 @@
           </div>
         `;
       }
-
-      // 🟢 PERUBAHAN UTAMA: judul sesi dibungkus dengan div .session-title-box
       return `
         <div class="session-title-box">
           <h4><i class="fas fa-clock"></i> ${title}</h4>
