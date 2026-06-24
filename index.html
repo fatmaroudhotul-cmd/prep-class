@@ -19,7 +19,6 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* ---- ANIMATED BACKGROUND (gradient bergerak) ---- */
     .bg-animated {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -34,7 +33,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* ---- FLOATING PARTICLES (CSS) ---- */
     .particle-container {
       position: fixed;
       top: 0; left: 0;
@@ -54,7 +52,6 @@
       100% { transform: translateY(-10vh) scale(1.2); opacity: 0.8; }
     }
 
-    /* ---- NAVBAR ---- */
     .navbar {
       display: flex;
       align-items: center;
@@ -120,7 +117,6 @@
     .nav-links a i { margin-right: 6px; }
     .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #004d4d; }
 
-    /* ---- HERO ---- */
     .hero {
       min-height: 90vh;
       display: flex;
@@ -204,7 +200,6 @@
       100% { transform: translateY(0px); }
     }
 
-    /* ---- SECTION ---- */
     .section {
       padding: 4rem 2.5rem;
       max-width: 1300px;
@@ -236,7 +231,6 @@
       box-shadow: 0 6px 20px rgba(0,128,128,0.25);
     }
 
-    /* ---- ORIENTASI CARD ---- */
     .orientasi-card {
       background: rgba(255,255,255,0.8);
       backdrop-filter: blur(8px);
@@ -276,7 +270,6 @@
       background: #006666;
     }
 
-    /* ---- JADWAL TAB ---- */
     .schedule-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -345,6 +338,7 @@
       background: rgba(255,255,255,0.95);
       box-shadow: 0 8px 24px rgba(0,128,128,0.06);
     }
+
     .subject-badge {
       display: inline-block;
       background: rgba(0,128,128,0.08);
@@ -356,6 +350,17 @@
       color: #004d4d;
     }
     .subject-badge i { margin-right: 6px; color: #008080; }
+    .subject-badge .guru {
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: #006666;
+      margin-left: 4px;
+      background: rgba(0,128,128,0.06);
+      padding: 1px 8px;
+      border-radius: 30px;
+      display: inline-block;
+    }
+
     .meet-link {
       color: #008080;
       font-weight: 600;
@@ -371,6 +376,26 @@
       background: #008080;
       color: #fff;
     }
+
+    .meet-box {
+      margin: 1rem 0 0.5rem;
+      background: rgba(0,128,128,0.05);
+      padding: 0.8rem 1.5rem;
+      border-radius: 40px;
+      display: inline-block;
+      border: 1px solid rgba(0,128,128,0.08);
+    }
+    .meet-box .jam-online {
+      font-weight: 600;
+      color: #004d4d;
+      background: rgba(0,128,128,0.06);
+      padding: 2px 12px;
+      border-radius: 30px;
+      margin-left: 12px;
+      display: inline-block;
+      font-size: 0.85rem;
+    }
+
     .schedule-note {
       margin-top: 2rem;
       background: rgba(255,255,255,0.7);
@@ -382,7 +407,6 @@
       color: #004d4d;
     }
 
-    /* ---- SESSION TITLE BOX (BARU) ---- */
     .session-title-box {
       background: rgba(255,255,255,0.75);
       backdrop-filter: blur(8px);
@@ -403,8 +427,17 @@
       color: #008080;
       margin-right: 8px;
     }
+    .session-title-box .jam {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #006666;
+      background: rgba(0,128,128,0.06);
+      padding: 2px 12px;
+      border-radius: 30px;
+      margin-left: 12px;
+      display: inline-block;
+    }
 
-    /* ---- MODUL ---- */
     .modul-wrapper { display: flex; flex-direction: column; gap: 2rem; }
     .pdf-container {
       background: rgba(255,255,255,0.7);
@@ -456,7 +489,6 @@
       box-shadow: 0 12px 32px rgba(0,128,128,0.35);
     }
 
-    /* ---- FOOTER ---- */
     .footer {
       background: #004d4d;
       color: #b2dfdb;
@@ -508,7 +540,6 @@
       opacity: 0.7;
     }
 
-    /* ---- RESPONSIVE ---- */
     @media (max-width: 900px) {
       .navbar { padding: 0 1.5rem; }
       .hero-content { padding: 2rem; }
@@ -535,16 +566,15 @@
       .pdf-container iframe { height: 400px; }
       .hero-text h1 { font-size: 2rem; }
       .session-title-box { display: block; width: 100%; text-align: center; }
+      .session-title-box .jam { display: block; margin: 6px 0 0 0; }
+      .meet-box .jam-online { display: block; margin: 6px 0 0 0; }
     }
   </style>
 </head>
 <body>
-<!-- Animated BG -->
 <div class="bg-animated"></div>
-<!-- Floating Particles -->
 <div class="particle-container" id="particles"></div>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">
     <img src="LOGO SMP ABBS SURAKARTA.png" alt="Logo ABBS" style="height:42px;" />
@@ -561,7 +591,6 @@
   <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-content">
     <div class="hero-text">
@@ -579,16 +608,14 @@
   </div>
 </section>
 
-<!-- JADWAL -->
 <section class="section" id="jadwal">
   <h2 class="section-title"><i class="fas fa-calendar-check"></i> Jadwal Matrikulasi</h2>
   <p class="section-sub">Pilih kelas untuk melihat jadwal lengkap.</p>
 
-  <!-- ORIENTASI -->
   <div class="orientasi-card">
     <div class="info">
       <h3><i class="fas fa-bullhorn" style="color:#008080;"></i> Orientasi Matrikulasi</h3>
-      <p><strong>Rabu, 24 Juni 2026</strong> — 08.45 WIB (Zoom)</p>
+      <p><strong>Rabu, 24 Juni 2026</strong> — 08.00 WIB (Zoom)</p>
       <p style="font-size:0.9rem; opacity:0.8;">Penjelasan program &amp; bertemu wali kelas sementara</p>
     </div>
     <a href="https://telkomsel.zoom.us/j/93027370540?pwd=oQ1jS8rLmrwaeXhXvPm0ipp6NBZP3p.1" target="_blank" class="zoom-link">
@@ -596,7 +623,6 @@
     </a>
   </div>
 
-  <!-- Tabs Kelas -->
   <div class="schedule-tabs" id="classTabs">
     <button class="active-tab" data-class="7A">7A</button>
     <button data-class="7B">7B</button>
@@ -609,7 +635,7 @@
 
   <div class="schedule-note">
     <i class="fas fa-info-circle" style="color:#008080;"></i>
-    <strong>Info:</strong> Sesi 1 &amp; 3 = Belajar Mandiri (baca modul, kerjakan tugas). Sesi 2 = Meeting Online via Google Meet (Jam 08.00 - 09.30 WIB).
+    <strong>Info:</strong> Sesi 1 &amp; 3 = Belajar Mandiri (baca modul, kerjakan tugas). Sesi 2 = Meeting Online via Google Meet.
   </div>
 
   <div class="tagline-section">
@@ -617,13 +643,11 @@
   </div>
 </section>
 
-<!-- MODUL -->
 <section class="section" id="modul">
   <h2 class="section-title"><i class="fas fa-file-pdf"></i> Modul Matrikulasi</h2>
   <p class="section-sub">Baca langsung atau unduh modul persiapan untuk semua mata pelajaran.</p>
   <div class="modul-wrapper">
     <div class="pdf-container">
-      <!-- Ganti src dengan file PDF Anda -->
       <iframe src="./PREPARATION CLASS MODUL.pdf#toolbar=1" title="Modul Matrikulasi"></iframe>
     </div>
     <div class="pdf-download">
@@ -644,7 +668,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div>
@@ -654,10 +677,10 @@
     <div>
       <div style="font-weight:600; color:#fff; margin-bottom:10px;">Ikuti Kami</div>
       <div class="social">
-        <a href="https://www.instagram.com/smpabbssurakarta/"><i class="fab fa-instagram"></i></a>
-        <a href="https://youtube.com/@smpabbssurakarta"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@smp.abbs.surakarta"><i class="fab fa-tiktok"></i></a>
-        <a href="https://wa.me/6289677477738"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </div>
@@ -665,7 +688,6 @@
 </footer>
 
 <script>
-  // ---- FLOATING PARTICLES ----
   (function createParticles() {
     const container = document.getElementById('particles');
     for (let i = 0; i < 20; i++) {
@@ -681,7 +703,7 @@
     }
   })();
 
-  // ---- DATA JADWAL (URUT: ORIENTASI 24, SESI1 25-27, SESI2 29-3, SESI3 6-10) ----
+  // ---- DATA JADWAL (dengan guru lengkap & jam online) ----
   const scheduleData = {
     '7A': {
       guru: {
@@ -741,7 +763,7 @@
       ],
       meetLink: 'https://meet.google.com/tdi-xqav-fvg'
     },
-   '7C': {
+    '7C': {
       guru: {
         Math: 'Ms Dila',
         English: 'Mr Hang',
@@ -830,7 +852,7 @@
     }
   };
 
-  // ---- RENDER PANEL (DENGAN SESSION TITLE BOX) ----
+  // ---- RENDER PANEL (dengan guru & jam online di sesi 2) ----
   function renderPanel(kls) {
     const data = scheduleData[kls];
     if (!data) return '<p>Data tidak tersedia.</p>';
@@ -838,22 +860,32 @@
     const iconMap = {
       'Math': 'fa-calculator',
       'Science': 'fa-flask',
-      'Inggris': 'fa-language',
+      'English': 'fa-language',
       'ICT': 'fa-laptop-code',
       'Quran': 'fa-quran'
     };
 
     function renderSubjects(mapels) {
-      return mapels.map(m => `<span class="subject-badge"><i class="fas ${iconMap[m] || 'fa-book'}"></i> ${m}</span>`).join(' ');
+      return mapels.map(m => {
+        let label = m;
+        if (data.guru && data.guru[m]) {
+          label += ` <span class="guru">(${data.guru[m]})</span>`;
+        }
+        return `<span class="subject-badge"><i class="fas ${iconMap[m] || 'fa-book'}"></i> ${label}</span>`;
+      }).join(' ');
     }
 
-    function buildTable(sesi, title, showMeet = false) {
+    function buildTable(sesi, title, showMeet = false, jam = null) {
       let rows = sesi.map(item => {
         let subjectsHtml;
         if (item.mapels) {
           subjectsHtml = renderSubjects(item.mapels);
         } else if (item.mapel) {
-          subjectsHtml = `<span class="subject-badge"><i class="fas ${iconMap[item.mapel] || 'fa-book'}"></i> ${item.mapel}</span>`;
+          let label = item.mapel;
+          if (data.guru && data.guru[item.mapel]) {
+            label += ` <span class="guru">(${data.guru[item.mapel]})</span>`;
+          }
+          subjectsHtml = `<span class="subject-badge"><i class="fas ${iconMap[item.mapel] || 'fa-book'}"></i> ${label}</span>`;
         }
         return `
           <tr>
@@ -866,18 +898,25 @@
       let meetHtml = '';
       if (showMeet) {
         meetHtml = `
-          <div style="margin:1rem 0 0.5rem; background:rgba(0,128,128,0.05); padding:0.8rem 1.5rem; border-radius:40px; display:inline-block;">
+          <div class="meet-box">
             <i class="fas fa-video" style="color:#008080;"></i>
             <strong>Link Meeting:</strong>
             <a href="${data.meetLink}" target="_blank" class="meet-link" style="margin-left:12px;">
               <i class="fas fa-external-link-alt"></i> Google Meet
             </a>
+            <span class="jam-online"><i class="far fa-clock"></i> 08.00 - 09.30 WIB</span>
           </div>
         `;
       }
+
+      let jamHtml = '';
+      if (jam) {
+        jamHtml = `<span class="jam"><i class="far fa-clock"></i> ${jam}</span>`;
+      }
+
       return `
         <div class="session-title-box">
-          <h4><i class="fas fa-clock"></i> ${title}</h4>
+          <h4><i class="fas fa-clock"></i> ${title} ${jamHtml}</h4>
         </div>
         ${meetHtml}
         <table class="schedule-table">
@@ -888,13 +927,12 @@
     }
 
     return `
-      ${buildTable(data.sesi1, 'Sesi 1 — Belajar Mandiri (25–27 Juni)', false)}
-      ${buildTable(data.sesi2, 'Sesi 2 — Meeting Online (29 Juni – 3 Juli)', true)}
-      ${buildTable(data.sesi3, 'Sesi 3 — Belajar Mandiri (6–10 Juli)', false)}
+      ${buildTable(data.sesi1, 'Sesi 1 — Belajar Mandiri (25–27 Juni)', false, null)}
+      ${buildTable(data.sesi2, 'Sesi 2 — Meeting Online (29 Juni – 3 Juli)', true, '08.00 - 09.30 WIB')}
+      ${buildTable(data.sesi3, 'Sesi 3 — Belajar Mandiri (6–10 Juli)', false, null)}
     `;
   }
 
-  // ---- SWITCH TAB ----
   const container = document.getElementById('schedulePanels');
   const tabs = document.querySelectorAll('#classTabs button');
 
@@ -911,7 +949,6 @@
   });
   switchClass('7A');
 
-  // ---- MOBILE TOGGLE ----
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
   menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
@@ -923,7 +960,6 @@
     });
   });
 
-  // ---- SCROLL ACTIVE NAV ----
   window.addEventListener('scroll', function() {
     const sections = ['home', 'jadwal', 'modul'];
     let current = 'home';
